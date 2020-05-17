@@ -44,7 +44,11 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What does bcrypt do to slow down attackers?
 
-- [ ] What are the three parts of the JSON Web Token?
+- [x] What are the three parts of the Signed JSON Web Token?
+    -- The three parts of a signed JWT are:
+        the header
+        the payload
+        the signature
 
 ## Minimum Viable Product
 
