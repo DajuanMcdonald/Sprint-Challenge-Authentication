@@ -8,16 +8,21 @@ describe('POST' , () => {
         await db('users').truncate();
     })
     describe('/api/auth/register', () => {
-        it('should return 201 status', async () => {
-            await request(server)
+        test('should return 201 status', async () => {
+            const response = await request(server)
             .post('/api/auth/register')
             .send({username: 'guest', password: 'notNullable'})
-            .then( res => {
-                expect(res.status).toBe(201)
-
-            })
-            
+             expect(response.status).toBe(201)       
         })
         
+    })
+
+    describe('/api/auth/login', () => {
+        it('should return 200 status', async () => {
+            const response = await request(server)
+            .post('/api/auth/register')
+            .send({username: 'guest', password: 'notNullable'})
+            expect(response.status).toBe(201)
+        })
     })
 })
