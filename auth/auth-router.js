@@ -3,31 +3,34 @@ const bcrypt = require('bcryptjs')
 const db = require('../database/dbConfig');
 
 
-router.get('/register', (req, res) => {
+router.post('/register', (req, res) => {
+const creds = req.body;
+  if(!user || !bcrypt,bcrypt.compareSync(creds.password, username.password)) {
+    return res.status(401).json({error: 'Invalid Session'})
+  } 
+const hash = bcrypt.hashSync(user.password, 14);
 
-  res.send('<h1>Welcome to API</h1>')
+user.password = hash;
 
-  // implement registration
-  // try {
 
-  //   let user = req.body;
-  
-  //   const hash = bcrypt.hash(username.password, 12)
-  //   user.username.password = hash;
-  
-  //   const newUser = await db('users')
-  //     .insert(newUser)
-      
-  //     res.status(201).json(newUser)
-
-  // } catch(err) {
-  //   res.sendStatus(err)
-  // }
 
 });
 
 router.post('/login', (req, res) => {
   // implement login
+  let { username, password} = req.body;
+
+  db('users')
+    .first()
+  .then( user => {
+    if (user && bcrypt.compareSync(password, user.password)) {
+      res.status(200).json({message: 'Welcome to API'})
+    } else {
+      res.status(401).json({message: 'Invalid Credentials'})
+    }
+  }) .catch(err => {
+    res.status(500).json(err)
+  })
 });
 
 module.exports = router;
