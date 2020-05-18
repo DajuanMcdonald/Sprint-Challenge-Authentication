@@ -5,8 +5,13 @@ const { expectCt } = require('helmet');
 
 describe('POST' , () => {
     beforeEach(async () => {
-        await db('users').truncate();
+        await db.seed.run()  })
+
+    afterAll( async () => {
+        await db.destroy()
+
     })
+    
     describe('/api/auth/register', () => {
         test('should return 201 status', async () => {
             const response = await request(server)
@@ -18,7 +23,7 @@ describe('POST' , () => {
     })
 
     describe('/api/auth/login', () => {
-        it('should return 200 status', async () => {
+        test('should return 200 status', async () => {
             const response = await request(server)
             .post('/api/auth/register')
             .send({username: 'guest', password: 'notNullable'})
