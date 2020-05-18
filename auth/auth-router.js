@@ -1,19 +1,25 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs')
-const db = require('../database/dbConfig');
+const Jokers = require('../jokes/jokes-model')
+// const db = require('../database/dbConfig');
 
 
 router.post('/register', (req, res) => {
-const creds = req.body;
-  if(!user || !bcrypt,bcrypt.compareSync(creds.password, username.password)) {
+let user = req.body;
+  if(!user || !bcrypt,bcrypt.compareSync(user.password, username.password)) {
     return res.status(401).json({error: 'Invalid Session'})
   } 
 const hash = bcrypt.hashSync(user.password, 14);
 
 user.password = hash;
 
-
-
+Jokers.add(user)
+  .then(save => {
+    res.status(201).json(save)
+  }).catch(err => {
+    res.status(500).json({message: 'Server Error..we are working on it...!', err})
+  })
+  
 });
 
 router.post('/login', (req, res) => {
