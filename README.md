@@ -40,7 +40,8 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] What is the purpose of using _sessions_?
 
-- 
+- sessions provide a way to persist data across API requests
+- sessions are used as a way to save authentication data.
 
 - [x] What does bcrypt do to help us store passwords in a secure manner.
 
