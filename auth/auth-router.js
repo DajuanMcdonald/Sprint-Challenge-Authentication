@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
         res.status(401).json({you: 'Shall not pass'})
       }
     }).catch(err => {
-      res.status(500).json({message: 'Server Error...we are working on it!!!', err})
+      res.status(500).json({message: 'Server Error..we are working on it!!!', err})
     })
 });
 
