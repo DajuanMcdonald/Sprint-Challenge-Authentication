@@ -41,8 +41,12 @@ Demonstrate your understanding of this week's concepts by answering the followin
 - [ ] What is the purpose of using _sessions_?
 
 - [ ] What does bcrypt do to help us store passwords in a secure manner.
+--bcrypt provide the encryption option when storing known data such as passwords
+--
 
 - [ ] What does bcrypt do to slow down attackers?
+--bcrypt uses cryptographic hashing algorithms to slow down
+attackers from obtaining user passwords
 
 - [x] What are the three parts of the Signed JSON Web Token?
     -- The three parts of a signed JWT are:
