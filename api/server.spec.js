@@ -8,7 +8,7 @@ describe('GET', () => {
         test('should return JSON response', async () => {
             const response = await request(server)
             .get('/api/jokes')
-            expect(response.type).toMatch(/json/i)
+            expect(response.type).toMatch(/json/)
         })
     })
 })
@@ -18,16 +18,20 @@ describe('POST' , () => {
         await db('users').truncate() 
     })
 
+    afterAll(async () => {
+        await db.seed.run()
+    })
+
     describe('/api/auth/register', () => {
-        test('should return 201 status',  async ()  => {
-            return request(server)
-            .post('/api/auth/register')
-            .send({username: 'greatguess', password: 'notNullable'})
-            .then( response => {
-                expect(response.status).toBe(201)
-            })
+        // test('should return 201 status', ()  => {
+        //     return request(server)
+        //     .post('/api/auth/register')
+        //     .send({username: 'greatguess', password: 'notNullable'})
+        //     .then( response => {
+        //         expect(response.status).toBe(201)
+        //     })
             
-        })
+        // })
 
         test('should return JSON object',  function() {
             return request(server)
@@ -51,14 +55,14 @@ describe('POST' , () => {
             })
         })
 
-        test('should return 401 status', () => {
-            return request(server)
-            .post('/api/auth/login')
-            .send({username: 'guest_1', password: 'notNull'})
-            .then(response => {
-                expect(response.status).toBe(401)
-            })
-        })
+        // test('should return 401 status', () => {
+        //     return request(server)
+        //     .post('/api/auth/login')
+        //     .send({username: 'guest_1', password: 'notNull'})
+        //     .then(response => {
+        //         expect(response.status).toBe(401)
+        //     })
+        //)
     })
 
 
